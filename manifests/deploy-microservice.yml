@@ -3,26 +3,26 @@ apiVersion: apps/v1
 #Rob comment
 metadata:
     labels:
-        app: visible_income-microservice
+        app: visible-income-microservice
         stack: frontend
         source: demo
-    name: visible_income-microservice
+    name: visible-income-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: visible_income-microservice
+            run: visible-income-microservice
     template:
         metadata:
             labels:
-                app: visible_income-microservice
-                run: visible_income-microservice
+                app: visible-income-microservice
+                run: visible-income-microservice
                 source: demo
         spec:
             containers:
-                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/visible_income-microservice
-                    name: visible_income-microservice
+                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/visible-income-microservice
+                    name: visible-income-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -32,13 +32,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: visible_income-microservice-service
-    name: visible_income-microservice-service
+        app: visible-income-microservice-service
+    name: visible-income-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: visible_income-microservice
+        app: visible-income-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -52,15 +52,15 @@ kind: Ingress
 metadata:
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: visible_income-ingress
+    name: visible-income-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /visible_income(/|$)(.*)
+                    -   path: /visible-income(/|$)(.*)
                         backend:
-                            serviceName: visible_income-microservice-service
+                            serviceName: visible-income-microservice-service
                             servicePort: 30201
 
 
