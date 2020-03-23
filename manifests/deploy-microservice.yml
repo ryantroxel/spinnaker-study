@@ -20,7 +20,7 @@ spec:
                 source: demo
         spec:
             containers:
-                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/mild-temper-microservice
+                -   image: 219099013464.dkr.ecr.us-west-2.amazonaws.com/visible_income-microservice
                     name: visible_income-microservice
                     ports:
                         -   name: web
@@ -57,7 +57,7 @@ spec:
     rules:
         -   http:
                 paths:
-                    -   path: /mild-temper(/|$)(.*)
+                    -   path: /visible_income(/|$)(.*)
                         backend:
                             serviceName: visible_income-microservice-service
                             servicePort: 30201
